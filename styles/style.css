@@ -242,7 +242,6 @@ body {
   align-items: center;
   width: clamp(306px, 70%, 335px);
   min-height: 55px;
-  background-color: transparent;
   gap: 8px;
   font-family: var(--accent-font);
   font-size: 14px;
