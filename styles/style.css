@@ -4,13 +4,360 @@
 ✦ like-icon — для svg-иконки анимированного сердца
 ✦ card__like-button — для кнопки Like рядом с иконкой
 ✦ card__icon-button — для кнопки, оборачивающей иконку
-✦ card__icon-button — для кнопки, оборачивающей иконку
 ✦ is-liked — для обозначения состояния лайкнутой иконки в виде сердца
 ✦ button__text — для обозначения текстового элемента внутри кнопки
 
 */
 
+body {
+  background-image: var(--background-image);
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
 .page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   min-inline-size: 320px;
   min-block-size: 100dvb;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: clamp(376px, 70%, 700px);
+  height: clamp(327px, 48vh, 368px);
+  border: 2px solid var(--main-color);
+  margin-top: 100px;
+  background-color: #fff;
+}
+
+.header__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.header__title {
+  font-family: var(--accent-font);
+  font-size: clamp(3.0625rem, 1.9087rem + 4.9231vw, 4.0625rem);
+}
+
+.header__text {
+  font-family: var(--accent-font);
+  font-size: clamp(0.875rem, 0.226rem + 2.7692vw, 1.4375rem);
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+  margin: 100px 0 100px 0;
+}
+
+.main__section {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: clamp(376px, 70%, 696px);
+  border: 2px solid var(--main-color);
+  background-color: #fff;
+}
+
+.main__title {
+  border-bottom: 2px solid var(--main-color);
+  padding: 4px 10px 6px 10px;
+}
+
+.main__title-text {
+  font-family: var(--main-font);
+  font-weight: var(--title-text-weight);
+  font-size: 18px;
+}
+
+.main__image-container {
+  width: clamp(375px, 100%, 696px);
+  height: clamp(375px, 100%, 696px);
+  position: relative;
+  display: inline-block;
+}
+
+.image__label {
+  position: absolute;
+  font-family: var(--accent-font);
+  font-size: 14px;
+  right: 25px;
+  top: 25px;
+  mix-blend-mode: var(--label-blend-mode);
+  text-shadow: -0.5px -0.5px 0 var(--stroke-color),
+                0.5px -0.5px 0 var(--stroke-color),
+               -0.5px 0.5px 0 var(--stroke-color),
+                0.5px 0.5px 0 var(--stroke-color);; 
+}
+
+@supports ((text-stroke: 0.5px var(--stroke-color);) or (-webkit-text-stroke: 0.5px var(--stroke-color);)) {
+  .image__label {
+    -webkit-text-stroke: 0.5px var(--stroke-color);
+    text-stroke: 0.5px var(--stroke-color);
+    text-shadow: none;
+  }
+}
+
+.main__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.filter-nostalgia {
+  filter: sepia(70%) blur(1px);
+}
+
+.filter-cold {
+  filter: hue-rotate(180deg) saturate(80%);
+}
+
+.filter-dramatic {
+  filter: contrast(150%) brightness(90%);
+}
+
+.filter-blur {
+  filter: blur(5px);
+}
+
+.filter-grunge {
+  filter: 
+    brightness(85%) 
+    contrast(130%) 
+    sepia(20%) 
+    drop-shadow(0 0 5px rgba(0, 0, 0, 0.7));
+}
+
+.filter-sunny {
+  filter: brightness(110%) saturate(150%) hue-rotate(-10deg);
+}
+
+.filter-surreal {
+  filter: drop-shadow(0 0 8px magenta) invert(15%);
+}
+
+.main__section-text {
+  display: flex;
+  flex-direction: column;
+  gap: 27px;
+  padding: 25px;
+}
+
+.main__section-text-post {
+  font-family: var(--main-font);
+  font-weight: var(--main-text-weight);
+}
+
+.main__buttons {
+  display: flex;
+  justify-content: end;
+  margin: 0 25px 25px 0;
+}
+
+.card__like-button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+.main__button-text {
+  position: relative;
+}
+
+.main__button-text:focus {
+  outline: none;
+  box-shadow: 2px 2px 0 var(--main-color);
+  transition: box-shadow 0.3s ease;
+}
+
+.main__button-text::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--main-color);
+  color: #fff;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s ease-in-out;
+}
+
+.main__button-text:hover::after {
+  transform: scaleX(1);
+}
+
+.button__text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 130px;
+  height: 38px;
+  border: 2px solid var(--stroke-color);
+  color: var(--stroke-color);
+  font-family: var(--accent-font);
+  font-size: 14px;
+  z-index: 1;
+  position: relative;
+  mix-blend-mode: difference;
+}
+
+.button {
+  position: relative;
+  z-index: 1;
+  color: var(--stroke-color);
+  mix-blend-mode: difference;
+}
+
+.main__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: clamp(306px, 320px, 335px);
+  height: 51px;
+  background-color: transparent;
+  gap: 8px;
+  font-family: var(--accent-font);
+  font-size: 14px;
+  color: var(--main-color);
+  background-color: var(--stroke-color);
+  border: 2px solid var(--main-color);
+  position: relative;
+}
+
+.main__button:focus {
+  outline: none;
+  box-shadow: 2px 2px 0 var(--main-color);
+  transition: box-shadow 0.3s ease;
+}
+
+.main__button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--main-color);
+  color: #fff;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s ease-in-out;
+}
+
+.main__button:hover::after {
+  transform: scaleX(1);
+}
+
+.main__button .icon {
+  mix-blend-mode: difference;
+}
+
+.icon {
+  width: 21px;
+  height: 21px;
+  position: relative;
+  z-index: 1;
+  color: var(--stroke-color);
+  mix-blend-mode: difference;
+}
+
+.main__modal {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  font-family: var(--accent-font);
+  font-size: 14px;
+  padding: 30px;
+  text-transform: uppercase;
+  line-height: 150%;
+}
+
+.main__modal-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.main__modal-button {
+  position: relative;
+  overflow: hidden;
+  background-color: transparent;
+  border: 2px solid var(--main-color);
+  height: 38px;
+}
+
+.main__modal-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--main-color);
+  color: #fff;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s ease-in-out;
+}
+
+.main__modal-button:hover::after {
+  transform: scaleX(1);
+}
+
+.main__modal-button:focus {
+  outline: none;
+  box-shadow: 2px 2px 0 var(--main-color);
+  transition: box-shadow 0.3s ease;
+}
+
+dialog {
+  display: grid;
+  position: fixed;
+  inset: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+dialog:not([open]) {
+  pointer-events: none;
+  opacity: 0;
+}
+
+dialog::backdrop {
+  background-color: rgb(0 0 0 / 0.5);
+}
+
+
+@media (width <= 376px) {
+
+  .main__button {
+    flex-direction: column;
+    height: 84px;
+  }
+
+  .icon {
+    width: 28px;
+    height: 28px;
+}
+
+.main__modal {
+  padding: 40px;
+}
 }
