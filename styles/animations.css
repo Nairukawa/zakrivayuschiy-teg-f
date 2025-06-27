@@ -50,7 +50,12 @@
   fill: var(--contour-color);
   transition: fill 0.3s linear 0.05s;
 }
-    
+
+.like-icon:hover .contour {
+    fill: var(--contour-color);
+    transition: fill 0.1s linear;
+}
+
 .like-icon .core {
   fill: transparent;
   transition: fill 0.3s linear 0.03s;
