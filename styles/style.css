@@ -52,6 +52,7 @@ body {
 .header__text {
   font-family: var(--accent-font);
   font-size: clamp(0.875rem, 0.226rem + 2.7692vw, 1.4375rem);
+  text-transform: uppercase;
 }
 
 .main {
@@ -89,7 +90,6 @@ body {
   height: clamp(375px, 100%, 696px);
   position: relative;
   display: inline-block;
-  margin: 2px 0;
 }
 
 .image__label {
@@ -181,9 +181,14 @@ body {
   background: none;
 }
 
+.main__buttons:focus-visible {
+  border: 2px solid var(--main-color);
+}
+
 .main__button-text {
   position: relative;
   background-color: transparent;
+  border: 2px solid var(--main-color);
 }
 
 .main__button-text:focus {
